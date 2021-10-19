@@ -11,8 +11,10 @@ function showTime() {
 const classDate = document.querySelector('.date');
 function showDate() {
     const date = new Date();
-    const currentDate = date.toLocaleDateString('en-US', {weekday: 'long'});
-    classDate.textContent = `${date.toLocaleDateString('en-US', {weekday: 'long'})}, ${date.toLocaleDateString('en-US', {month: 'long'})} ${date.toLocaleDateString('en-US', {day: 'numeric'})}`;
+    const currentWeekday = date.toLocaleDateString('en-US', {weekday: 'long'});
+    const currentMonth = date.toLocaleDateString('en-US', {month: 'long'});
+    const currentDay = date.toLocaleDateString('en-US', {day: 'numeric'});
+    classDate.textContent = `${currentWeekday}, ${currentMonth} ${currentDay}`;
 }
 //-- set date
 //-- every second interval

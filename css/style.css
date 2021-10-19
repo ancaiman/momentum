@@ -193,11 +193,6 @@ body {
   background-image: url("../assets/svg/slider-next.svg");
 }
 
-.time-and-date {
-  display: flex;
-  flex-direction: column;
-}
-
 .time {
   min-height: 124px;
   margin-bottom: 10px;

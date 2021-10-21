@@ -43,7 +43,7 @@ function getTimeOfDay() {
         case 15:
         case 16:
         case 17:
-            return 'Day';
+            return 'Afternoon';
         case 18:
         case 19:
         case 20:
@@ -87,3 +87,19 @@ function getLocalStorage() {
 }
 window.addEventListener('load', getLocalStorage);
 //-- set Name
+//-- set BG
+function getRandomNum() {
+    return Math.floor(Math.random() * 19) + 1;
+}
+
+function setBg() {
+    const timeOfDay = getTimeOfDay();
+    let bgNum = getRandomNum();
+    if (bgNum < 10) {
+        bgNum = '0' + bgNum;
+    }
+    const body = document.querySelector('body');
+    body.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay.toLowerCase()}/${bgNum}.jpg`;
+}
+setBg()
+//-- set BG

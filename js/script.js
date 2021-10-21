@@ -66,10 +66,24 @@ setInterval(() => {
     showGreeting();
 }, 1000);
 //-- every second interval
-//-- set name
+//-- set placeholder
 const className = document.querySelector('.name');
 function enterName() {
     className.placeholder='[Enter Name]';
 };
 enterName();
-//-- set name
+//-- set placeholder
+//-- set Name
+const inputName = document.querySelector('div.greeting-container > input');
+function setLocalStorage() {
+    localStorage.setItem('name', inputName.value);
+}
+window.addEventListener('beforeunload', setLocalStorage);
+
+function getLocalStorage() {
+    if (localStorage.getItem('name')) {
+        inputName.value = localStorage.getItem('name');
+    }
+}
+window.addEventListener('load', getLocalStorage);
+//-- set Name

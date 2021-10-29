@@ -91,14 +91,14 @@ function getLocalStorage() {
 window.addEventListener('load', getLocalStorage);
 //-- set Name
 //-- set BG
-function getRandomNum() {
-    return Math.floor(Math.random() * 19) + 1;
+function getRandomNum(a, b) {
+    return Math.floor(Math.random() * a) + b;
 };
 
 const timeOfDay = getTimeOfDay();
 const body = document.querySelector('body');
 function setBg() {
-    let bgNum = getRandomNum();
+    let bgNum = getRandomNum(19, 1);
     if (bgNum < 10) {
         bgNum = '0' + bgNum;
     }
@@ -107,7 +107,7 @@ function setBg() {
 setBg();
 //-- set BG
 //-- bg slider
-let randomNum = getRandomNum();
+let randomNum = getRandomNum(19, 1);
 function getSlideNext() {
     if (randomNum < 10) {
         randomNum = '0' + randomNum;
@@ -160,11 +160,18 @@ slidePrev.addEventListener('click', getSlidePrev);
 // inputCity.addEventListener('keypress', setCity);
 //-- weather
 //-- quotes
-async function getQuotes() {  
+const quote = document.querySelector('.quote');
+const author = document.querySelector('.author');
+const quoteRefresh = document.querySelector('.change-quote');
+async function getQuotes() {
     const data = '../assets/json/quotes.json';
     const res = await fetch(data);
-    const quotes = await res.json(); 
-    console.log(quotes);
+    const quotes = await res.json();
+
+    let index = getRandomNum(5, 1);
+    quote.textContent = quotes[index].text;
+    author.textContent = quotes[index].author;
 }
 getQuotes();
+quoteRefresh.addEventListener('click', getQuotes);
 //-- quotes

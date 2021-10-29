@@ -59,6 +59,8 @@ window.addEventListener('beforeunload', setLocalStorage);
 function getLocalStorage() {
     if (localStorage.getItem('name')) {
         inputName.value = localStorage.getItem('name');
+    }
+    if (localStorage.getItem('city')) {
         inputCity.value = localStorage.getItem('city');
     }
 };
@@ -109,29 +111,30 @@ slideNext.addEventListener('click', getSlideNext);
 slidePrev.addEventListener('click', getSlidePrev);
 //-- bg slider
 //-- weather
-// const weatherIcon = document.querySelector('.weather-icon');
-// const temperature = document.querySelector('.temperature');
-// const weatherDescription = document.querySelector('.weather-description');
-// async function getWeather() {
-//     const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.textContent}lang=en&appid=68bf2022bf776ecd194328a3ad6537f6&units=metric`;
-//     const res = await fetch(url);
-//     const data = await res.json();
+const weatherIcon = document.querySelector('.weather-icon');
+const temperature = document.querySelector('.temperature');
+const weatherDescription = document.querySelector('.weather-description');
+inputCity.value == '' ? inputCity.value = 'Kaliningrad' : inputCity.value;
+async function getWeather() {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&lang=en&appid=68bf2022bf776ecd194328a3ad6537f6&units=metric`;
+    const res = await fetch(url);
+    const data = await res.json();
+    
+    weatherIcon.className = 'weather-icon owf';
+    weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${data.main.temp.toFixed(0)}°C`;
+    weatherDescription.textContent = data.weather[0].description;
+}
 
-//     weatherIcon.className = 'weather-icon owf';
-//     weatherIcon.classList.add(`owf-${data.weather[0].id}`);
-//     temperature.textContent = `${data.main.temp.toFixed(0)}°C`;
-//     weatherDescription.textContent = data.weather[0].description;
-// }
+function setCity(event) {
+    if (event.code === 'Enter') {
+        getWeather();
+        inputCity.blur();
+    }
+}
 
-// function setCity(event) {
-//     if (event.code === 'Enter') {
-//         getWeather();
-//         inputCity.blur();
-//     }
-// }
-
-// document.addEventListener('DOMContentLoaded', getWeather);
-// inputCity.addEventListener('keypress', setCity);
+document.addEventListener('DOMContentLoaded', getWeather);
+inputCity.addEventListener('keypress', setCity);
 //-- weather
 //-- quotes
 const quote = document.querySelector('.quote');
@@ -143,7 +146,7 @@ async function getQuotes() {
     const quotes = await res.json();
 
     let index = getRandomNum(5, 1);
-    quote.textContent = quotes[index].text;
+    quote.textContent = `"${quotes[index].text}"`;
     author.textContent = quotes[index].author;
 }
 getQuotes();

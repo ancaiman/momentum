@@ -141,7 +141,7 @@ const quote = document.querySelector('.quote');
 const author = document.querySelector('.author');
 const quoteRefresh = document.querySelector('.change-quote');
 async function getQuotes() {
-    const data = '../assets/json/quotes.json';
+    const data = './assets/json/quotes.json';
     const res = await fetch(data);
     const quotes = await res.json();
 

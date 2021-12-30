@@ -1,4 +1,5 @@
 'use strict'
+let log = console.log;
 //-- set time
 const classTime = document.querySelector('.time');
 function showTime() {
@@ -42,10 +43,7 @@ setInterval(() => {
 //-- every second interval
 //-- set placeholder
 const className = document.querySelector('.name');
-function enterName() {
-    className.placeholder='[Enter Name]';
-};
-enterName();
+className.placeholder='[Enter Name]';
 //-- set placeholder
 //-- set Name
 const inputName = document.querySelector('.name');
@@ -73,37 +71,24 @@ function getRandomNum(a, b) {
 
 const timeOfDay = getTimeOfDay();
 const body = document.querySelector('body');
-function setBg() {
-    let bgNum = getRandomNum(19, 1);
-    if (bgNum < 10) {
-        bgNum = '0' + bgNum;
-    }
-    body.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay.toLowerCase()}/${bgNum}.jpg`;
-};
-setBg();
+let bgNum = getRandomNum(19, 1);
+body.style.backgroundImage = `url('./assets/img/${timeOfDay.toLowerCase()}/${bgNum}.jpg`;
 //-- set BG
 //-- bg slider
-let randomNum = getRandomNum(19, 1);
 function getSlideNext() {
-    if (randomNum < 10) {
-        randomNum = '0' + randomNum;
+    if (bgNum == 20) {
+        bgNum = 0;
     }
-    body.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay.toLowerCase()}/${randomNum}.jpg`;
-    if (randomNum == 20) {
-        randomNum = 0;
-    }
-    randomNum ++;
+    bgNum += 1;
+    body.style.backgroundImage = `url('./assets/img/${timeOfDay.toLowerCase()}/${bgNum}.jpg`;
 };
 
 function getSlidePrev() {
-    if (randomNum < 10) {
-        randomNum = '0' + randomNum;
+    if (bgNum == 1) {
+        bgNum = 21;
     }
-    body.style.backgroundImage = `url('https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay.toLowerCase()}/${randomNum}.jpg`;
-    if (randomNum == 1) {
-        randomNum = 21;
-    }
-    randomNum --;
+    bgNum -= 1;
+    body.style.backgroundImage = `url('./assets/img/${timeOfDay.toLowerCase()}/${bgNum}.jpg`;
 };
 const slideNext = document.querySelector('.slide-next');
 const slidePrev = document.querySelector('.slide-prev');

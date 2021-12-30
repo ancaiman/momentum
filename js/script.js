@@ -45,7 +45,7 @@ setInterval(() => {
 const className = document.querySelector('.name');
 className.placeholder='[Enter Name]';
 //-- set placeholder
-//-- set Name
+//-- LocalStorage init
 const inputName = document.querySelector('.name');
 const inputCity = document.querySelector('.city');
 function setLocalStorage() {
@@ -63,7 +63,7 @@ function getLocalStorage() {
     }
 };
 window.addEventListener('load', getLocalStorage);
-//-- set Name
+//-- LocalStorage init
 //-- set BG
 function getRandomNum(a, b) {
     return Math.floor(Math.random() * a) + b;
@@ -71,7 +71,7 @@ function getRandomNum(a, b) {
 
 const timeOfDay = getTimeOfDay();
 const body = document.querySelector('body');
-let bgNum = getRandomNum(19, 1);
+let bgNum = getRandomNum(20, 1);
 body.style.backgroundImage = `url('./assets/img/${timeOfDay.toLowerCase()}/${bgNum}.jpg`;
 //-- set BG
 //-- bg slider
